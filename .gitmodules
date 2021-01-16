@@ -1,0 +1,18 @@
+[submodule "external/RuntimeCompiledCPlusPlus"]
+	path = external/RuntimeCompiledCPlusPlus
+	url = https://github.com/RuntimeCompiledCPlusPlus/RuntimeCompiledCPlusPlus.git
+[submodule "external/pedal"]
+	path = external/pedal
+	url = https://github.com/aaronaanderson/pedal.git
+[submodule "external/imgui"]
+	path = external/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "external/rtaudio"]
+	path = external/rtaudio
+	url = https://github.com/thestk/rtaudio.git
+[submodule "external/rtmidi"]
+	path = external/rtmidi
+	url = https://github.com/thestk/rtmidi.git
+[submodule "external/glfw"]
+	path = external/glfw
+	url = https://github.com/glfw/glfw.git
