@@ -1,9 +1,9 @@
 #ifndef PedalApplication_hpp
 #define PedalApplication_hpp
 
-#include "AplicationBase.hpp"
+#include "ApplicationBase.hpp"
 
-class PedalApplication : public AplicationBase{
+class PedalApplication : public ApplicationBase{
 
 };
 
