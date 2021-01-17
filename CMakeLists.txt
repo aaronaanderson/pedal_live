@@ -54,6 +54,9 @@ target_compile_definitions(gl3w PUBLIC IMGUI_IMPL_OPENGL_LOADER_GL3W)
 
 add_library(baseApplication STATIC
     src/ApplicationBase.cpp
+    src/RuntimeSystem/RCDrawLoop.cpp
+    src/RuntimeSystem/RuntimeSystem.hpp
+    src/RuntimeSystem/StdioLogSystem.cpp
     external/imgui/backends/imgui_impl_glfw.cpp 
     external/imgui/backends/imgui_impl_opengl3.cpp
 )
@@ -70,7 +73,7 @@ add_executable(PedalApp
 )
 set_target_properties(PedalApp PROPERTIES 
     DEBUG_POSTFIX _DEBUG
-    CXX_STANDARD 14
+    CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     RUNTIME_OUTPUT_DIRECTORY bin
     RUNTIME_OUTPUT_DIRECTORY_DEBUG bin/

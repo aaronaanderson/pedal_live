@@ -9,7 +9,6 @@
   This class should hide run-time recompile complexities
 */
 
-
 struct ApplicationData;
 class ApplicationBase{
     public:

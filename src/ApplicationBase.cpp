@@ -1,5 +1,3 @@
-#ifndef ApplicationBase_cpp
-#define ApplicationBase_cpp
 
 #include "ApplicationBase.hpp"
 
@@ -14,8 +12,14 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
+#include "RuntimeSystem/RuntimeSystem.hpp"
+
+#include "RuntimeSystem/SystemTable.hpp"
+#include "RuntimeSystem/RCDrawLoop.hpp"
+
 struct ApplicationData{
     GLFWwindow* window = nullptr;
+    RuntimeSystem runtimeSystem;
 };
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if ((action == GLFW_PRESS) && (mods & GLFW_MOD_CONTROL) && (key == GLFW_KEY_Q)) {
@@ -53,14 +57,14 @@ ApplicationBase::ApplicationBase(){
         glfwDestroyWindow(appData->window);
         glfwTerminate();
         delete appData;
-    }
+    }     
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
 
     ImGui_ImplGlfw_InitForOpenGL(appData->window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
-
+    appData->runtimeSystem.setContext(ImGui::GetCurrentContext());
 }
 
 bool ApplicationBase::advanceFrame(){
@@ -103,9 +107,16 @@ void ApplicationBase::update(){
 
 
     ImGui::End();
-
+    appData->runtimeSystem.update();
+    if(auto a = RuntimeSystem::getGlobalSystemTable()){
+        if(auto b = a->rcDraw){
+            b->draw();
+        }
+    }
+  
+    //&(RuntimeSystem::getSystemTable()->rcDraw)->draw();
     ImGui::SetNextWindowPos(ImVec2{160.0f,0.0f});
-    ImGui::SetNextWindowSize(ImVec2{window_w - 160, float(window_h)});
+    ImGui::SetNextWindowSize(ImVec2{float(window_w - 160), float(window_h)});
 
 
     ImGui::Render();
@@ -122,4 +133,3 @@ ApplicationBase::~ApplicationBase(){
     glfwTerminate();
     delete appData;
 }
-#endif
